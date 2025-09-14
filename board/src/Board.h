@@ -10,13 +10,13 @@ const int SIZE = 3;
 
 class Board {
     private:
-        std::array<std::array<int, SIZE>, SIZE> m_nums;
+        std::vector<std::vector<int>> m_nums;
         int m_manhattanDistance; // sum of vertical & horizontal distances, used heuristic
         int m_zeroRow, m_zeroCol;
         std::set<int> m_set;
 
     public:
-        Board(const std::array<std::array<int, SIZE>, SIZE>& init) : m_manhattanDistance(0) {
+        Board(const std::vector<std::vector<int>>& init) : m_manhattanDistance(0), m_nums(SIZE, std::vector<int>(SIZE)) {
             for (int i = 0; i < SIZE; ++i) {
                 for (int j = 0; j < SIZE; ++j) {
                     m_nums[i][j] = init[i][j];
@@ -40,12 +40,14 @@ class Board {
             return m_set.size() == 9 && *m_set.begin() == 0 && *m_set.rbegin() == 8; 
         }
 
-        const std::array<std::array<int, SIZE>, SIZE>& getNums() const {
+        const std::vector<std::vector<int>>& getNums() const {
             return m_nums;
         }
 
         // A* search
         std::vector<Board> solve();
+
+        std::vector<std::string> solveString();
 
         // runs proportional to n^4
         bool isSolvable() {
@@ -75,7 +77,7 @@ class Board {
         }
 
         bool operator==(Board that) const {
-            std::array<std::array<int, SIZE>, SIZE> thatNums = that.getNums();
+            std::vector<std::vector<int>> thatNums = that.getNums();
             for (int i = 0; i < SIZE; ++i) {
                 for (int j = 0; j < SIZE; ++j) {
                     if (m_nums[i][j] != thatNums[i][j]) {
@@ -125,6 +127,24 @@ class Board {
                     str += " ";
                 }
                 str += "\n";
+            }
+            return str;
+        }
+
+        std::string toString() const {
+            std::string str = "";
+            for (int i = 0; i < SIZE; ++i) {
+                for (int j = 0; j < SIZE; ++j) {
+                    if (m_nums[i][j] != 0) {
+                        str += (m_nums[i][j] + '0');
+                    }
+                    str += ",";
+                }
+            }
+             
+            // fix for two commas at end
+            if (str[str.size() - 1] == str[str.size() - 2]) {
+                str.pop_back();
             }
             return str;
         }

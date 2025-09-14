@@ -13,7 +13,7 @@ const SOLVED_STATE: PuzzleState = [1, 2, 3, 4, 5, 6, 7, 8, null];
 export default function PuzzleGame() {
   const [puzzle, setPuzzle] = useState<PuzzleState>([1, 2, 3, 4, 5, 6, 7, 8, null]);
   const [isWon, setIsWon] = useState(false);
-  const [inputValue, setInputValue] = useState('1,2,3,4,5,6,7,8,');
+  const [inputValue, setInputValue] = useState('1,2,3,4,5,6,8,7,');
   const [isSolving, setIsSolving] = useState(false);
 
   const getEmptyIndex = (state: PuzzleState): number => {
@@ -69,7 +69,6 @@ export default function PuzzleGame() {
   };
 
   const solve = () => {
-    // No solve logic - button does nothing
   };
 
   const handleInputSubmit = () => {
