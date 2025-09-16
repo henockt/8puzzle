@@ -100,7 +100,7 @@ export default function PuzzleGame() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-gray-800">8puzzle visualizer</CardTitle>
           {isWon && (
-            <div className="text-green-600 font-semibold animate-pulse">
+            <div className="text-green-600 font-semibold">
                Solved state
             </div>
           )}
