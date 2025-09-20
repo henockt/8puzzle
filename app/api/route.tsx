@@ -42,7 +42,7 @@ export async function GET(request: Request) {
   }
 
   if (!board.isSolvable()) {
-    return Response.json({ error: "no solution exists" });
+    return Response.json({ moves: -1, error: "no solution exists" });
   }
 
   const solution = board.solveString();

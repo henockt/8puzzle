@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
+import { useRouter } from "next/navigation";
 
 type PuzzleState = (number | null)[];
 
@@ -15,6 +16,7 @@ export default function PuzzleGame() {
   const [isWon, setIsWon] = useState(false);
   const [inputValue, setInputValue] = useState('1,2,3,4,5,6,8,7,');
   const [isSolving, setIsSolving] = useState(false);
+  const router = useRouter();
 
   const getEmptyIndex = (state: PuzzleState): number => {
     return state.findIndex(tile => tile === null);
@@ -69,6 +71,7 @@ export default function PuzzleGame() {
   };
 
   const solve = () => {
+    router.push(`/solve?puzzle=${puzzle.join(",")}`)
   };
 
   const handleInputSubmit = () => {
@@ -141,7 +144,8 @@ export default function PuzzleGame() {
             <Button 
               onClick={solve} 
               disabled={false}
-              className="flex-1"
+              variant="outline"
+              className="flex-1 bg-green-400 text-black"
             >
               Solve
             </Button>
