@@ -71,7 +71,7 @@ export default function PuzzleGame() {
   };
 
   const solve = () => {
-    router.push(`/solve?puzzle=${puzzle.join(",")}`)
+    window.open(`/solve?puzzle=${puzzle.join(",")}`, "__blank");
   };
 
   const handleInputSubmit = () => {
