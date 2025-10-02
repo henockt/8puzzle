@@ -1,8 +1,8 @@
 import path from "path";
 import initBoardModule from "../../board/build/board.js";
 
-const BoardModule = await initBoardModule({
-  locateFile: (file) => path.join(process.cwd(), "board/build", file)
+const BoardModule : any = await initBoardModule({
+  locateFile: (file: string) => path.join(process.cwd(), "board/build", file)
 });
 
 export async function GET(request: Request) {
